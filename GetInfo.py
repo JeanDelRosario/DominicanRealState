@@ -61,6 +61,8 @@ for page in range(2, 10):
 
     time.sleep(3)
 
+    # Change this part. As of right now they stopped using buttons for pages
+    # Now the show more results by scrolling down
     btn = driver.find_element_by_xpath('//a[@aria-label="Page {}"]'.format(page))
 
     btn.click()
