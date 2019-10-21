@@ -6,8 +6,11 @@ import time
 
 url = 'https://www.remaxrd.com/propiedades/q:%22%22+type:apartment/?'
 
+# Download geckodriver and put the path in this variable
+geckodriver_path = r'D:/geckodriver-v0.26.0-win64/geckodriver.exe'
+
 # create a new Firefox session
-driver = webdriver.Firefox(executable_path=r'/home/jeancarlos/Desktop/Proyectos/BienesRaicesRD/DominicanRealState/geckodriver')
+driver = webdriver.Firefox(executable_path=geckodriver_path)
 
 driver.get(url)
 
@@ -24,7 +27,7 @@ info_apartments = {
 
 
 
-for page in range(2, 200):
+for page in range(2, 10):
     print(page)
 
     soup = BeautifulSoup(driver.page_source, 'lxml')
@@ -38,7 +41,7 @@ for page in range(2, 200):
         if 'Apartamento' in aparments[i].findAll('p', {'class': 'card__description__title'})[0].text:
 
             print(i)
-            info_apartments['direction'].append( aparments[i].find('p', {'class': 'card__description__address'}).text )
+            info_apartments['direction'].append( aparments[i].find('p', {'class': 'card__description__address__mansory'}).text )
             info_apartments['price'].append( aparments[i].find('p', {'class': 'card__description__price'}).text )
             info_apartments['type'].append( aparments[i].findAll('p', {'class': 'card__description__title'})[1].text )
             try:
