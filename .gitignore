@@ -4,3 +4,5 @@
 
 # Conda environment
 /env
+.Rproj.user
+/DominicanRealState.Rproj
